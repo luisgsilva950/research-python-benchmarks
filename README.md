@@ -8,7 +8,7 @@ measuring the 90th percentile (p90) performance for each approach while executin
 
 Understanding the performance characteristics of different concurrency strategies is crucial for developing efficient
 and scalable Python applications. This benchmark project provides insights into how various multiprocessing techniques
-perform under different workloads and input sizes.
+perform under different workloads and input sizes. Also, it's important to prove that threads for CPU bounded tasks that do not work well in Python because of GIL.
 
 ## Workloads
 
