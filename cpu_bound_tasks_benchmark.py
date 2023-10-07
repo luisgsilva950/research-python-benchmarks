@@ -1,28 +1,10 @@
 import gzip
 import json
-import time
-
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import Pool
 from typing import List
-from numpy import percentile
 
-
-def timeit(executions: int = 1):
-    def function_wrapper(function):
-        def wrapper(*function_args, **function_kwargs):
-            execution_times = []
-            for _ in range(executions):
-                st = time.time()
-                function(*function_args, **function_kwargs)
-                execution_times.append(round(time.time() - st, 4))
-            execution_times.sort()
-            return percentile(execution_times, 90)
-
-        wrapper.__name__ = function.__name__
-        return wrapper
-
-    return function_wrapper
+from utils import timeit, plot
 
 
 def generate_x_gzipped_values(size: int):
@@ -38,7 +20,7 @@ def generate_x_gzipped_values(size: int):
     return values
 
 
-@timeit(executions=10)
+@timeit(executions=5)
 def get_sequential_time(values: List[bytes]):
     sequential_results = []
     for value in values:
@@ -46,7 +28,7 @@ def get_sequential_time(values: List[bytes]):
     return sequential_results
 
 
-@timeit(executions=10)
+@timeit(executions=5)
 def get_threadpool_100_workers_time(values: List[bytes]):
     executor = ThreadPoolExecutor(max_workers=100)
     futures = []
@@ -56,7 +38,7 @@ def get_threadpool_100_workers_time(values: List[bytes]):
     return futures
 
 
-@timeit(executions=10)
+@timeit(executions=5)
 def get_threadpool_10_workers_time(values: List[bytes]):
     executor = ThreadPoolExecutor(max_workers=10)
     futures = []
@@ -66,16 +48,16 @@ def get_threadpool_10_workers_time(values: List[bytes]):
     return futures
 
 
-@timeit(executions=10)
+@timeit(executions=5)
 def get_multiprocessing_pool_time(values: List[bytes]):
-    with Pool() as pool:
+    with Pool(processes=4) as pool:
         return pool.map(gzip.decompress, values)
 
 
 if __name__ == '__main__':
     xs = []
     seq_ys, threadpool_100_workers_ys, threadpool_10_workers_ys, multiprocessing_pool_ys = [], [], [], []
-    for x in [10, 500, 5000, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000]:
+    for x in range(1, 2000, 100):
         xs.append(x)
         compressed_values = generate_x_gzipped_values(size=x)
         seq_ys.append(get_sequential_time(values=compressed_values))
@@ -96,14 +78,9 @@ if __name__ == '__main__':
     with open("python_decompress_seq_thread_multiprocessing.json", "w") as fp:
         json.dump(results, fp=fp)
 
-    import matplotlib.pyplot as plt
-
-    plt.plot(results["xs"], results["seq_ys"], color='maroon', marker='o', label="sequential")
-    plt.plot(results["xs"], results["threadpool_100_workers_ys"], color='blue', marker='o', label="threadpool 100 workers")
-    plt.plot(results["xs"], results["threadpool_10_workers_ys"], color='green', marker='o', label="threadpool 10 workers")
-    plt.plot(results["xs"], results["multiprocessing_pool_ys"], color='red', marker='o', label="multiprocessing pool")
-    plt.xlabel('nº tasks')
-    plt.ylabel('seconds')
-    plt.title("Comparison of CPU bound tasks using Python 3.10")
-    plt.legend()
-    plt.show()
+    plot(title="Comparison of CPU bound tasks using Python 3.10",
+         xs=('nº tasks', xs),
+         values=[('sequential', seq_ys),
+                 ('threadpool 100 workers', threadpool_100_workers_ys),
+                 ('threadpool 10 workers', threadpool_10_workers_ys),
+                 ('multiprocessing pool', multiprocessing_pool_ys)])
