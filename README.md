@@ -10,8 +10,7 @@ sequential, thread pool with 100 workers, thread pool with 10 workers, and using
 ## Motivation
 Understanding the performance characteristics of different concurrency strategies is crucial for developing efficient
 and scalable Python applications. This benchmark project provides insights into how various multiprocessing techniques
-perform under different workloads and input sizes. Also, it's important to prove that threads for CPU bounded tasks that
-do not work well in Python because of GIL.
+perform under different workloads and input sizes. Also, it's important to prove that threads for CPU bounded tasks do not work well in Python because of GIL.
 
 ## Examples
 1. **Sequential**: This approach represents the baseline performance of executing tasks sequentially.
