@@ -35,9 +35,9 @@ This repository provides different methods for working with lists in Python, aim
 The `sum` function in Python allows you to calculate the sum of elements in a list efficiently. By utilizing `sum`, you can simplify your code and enhance readability when dealing with numerical lists.
 
 ```python
-numbers = [1, 2, 3, 4, 5]
-total = sum(numbers)
-print("Sum of numbers:", total)
+numbers = [[1, 2], [3, 4, 5]]
+total = sum(numbers, [])
+print("Flat numbers:", total)
 ```
 
 ### Using extend
