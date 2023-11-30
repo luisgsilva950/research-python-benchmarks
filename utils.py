@@ -25,7 +25,7 @@ def plot(title: str, xs: Tuple[str, List[int]], values: List[Tuple[str, List[int
     import matplotlib.pyplot as plt
     plt.figure(figsize=(12, 6))
     x_legend, xs = xs
-    colors = ('red', 'green', 'blue', 'brown', 'yellow', 'black')
+    colors = ('red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta', 'yellow', 'brown', 'black')
 
     for idx, r in enumerate(values):
         legend, results = r

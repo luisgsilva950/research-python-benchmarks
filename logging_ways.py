@@ -4,7 +4,7 @@ from typing import List
 
 from utils import timeit, plot
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     with open("results/python_logging_ways.json", "w") as fp:
         json.dump(results, fp=fp)
 
-    plot(title="Comparison of logging debug alternatives using Python 3.10 (LOG LEVEL: DEBUG)",
+    plot(title="Comparison of logging debug alternatives using Python 3.10 (LOG LEVEL: INFO)",
          xs=('nº of texts', xs),
          values=[('f string', f_string_ys),
                  ('string format', string_format_ys),
