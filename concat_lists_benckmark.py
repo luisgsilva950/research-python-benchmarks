@@ -60,7 +60,7 @@ if __name__ == '__main__':
                "extend_ys": extend_ys,
                "compression_ys": compression_ys}
 
-    with open("python_concat_lists.json", "w") as fp:
+    with open("results/python_concat_lists.json", "w") as fp:
         json.dump(results, fp=fp)
 
     plot(title="Comparison of flat lists methods using Python 3.10",

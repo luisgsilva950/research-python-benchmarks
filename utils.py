@@ -23,9 +23,9 @@ def timeit(executions: int = 1):
 
 def plot(title: str, xs: Tuple[str, List[int]], values: List[Tuple[str, List[int]]]):
     import matplotlib.pyplot as plt
-
+    plt.figure(figsize=(12, 6))
     x_legend, xs = xs
-    colors = ('red', 'green', 'blue', 'brown', 'yellow')
+    colors = ('red', 'green', 'blue', 'brown', 'yellow', 'black')
 
     for idx, r in enumerate(values):
         legend, results = r
@@ -35,4 +35,9 @@ def plot(title: str, xs: Tuple[str, List[int]], values: List[Tuple[str, List[int
     plt.ylabel('seconds')
     plt.title(title)
     plt.legend()
+
+    # plt.tight_layout()
+    plt.savefig(f'figures/{title.replace(" ", "_").replace(".", "_").replace(":", "_")}'.lower(),
+                facecolor='auto', edgecolor='auto', backend=None)
+
     plt.show()

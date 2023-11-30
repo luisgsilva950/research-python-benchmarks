@@ -80,7 +80,7 @@ if __name__ == '__main__':
                "pythonclass_ys": pythonclass_ys,
                "frozen_dataclass_ys": frozen_dataclass_ys}
 
-    with open("python_instantiating_object_ways.json", "w") as fp:
+    with open("results/python_instantiating_object_ways.json", "w") as fp:
         json.dump(results, fp=fp)
 
     plot(title="Comparison of instantiating objects using Python 3.10",

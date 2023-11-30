@@ -57,7 +57,7 @@ def get_multiprocessing_pool_time(values: List[bytes]):
 if __name__ == '__main__':
     xs = []
     seq_ys, threadpool_100_workers_ys, threadpool_10_workers_ys, multiprocessing_pool_ys = [], [], [], []
-    for x in range(1, 100000, 100):
+    for x in range(1, 50000, 100):
         xs.append(x)
         compressed_values = generate_x_gzipped_values(size=x)
         seq_ys.append(get_sequential_time(values=compressed_values))
@@ -75,7 +75,7 @@ if __name__ == '__main__':
                "threadpool_10_workers_ys": threadpool_10_workers_ys,
                "multiprocessing_pool_ys": multiprocessing_pool_ys}
 
-    with open("python_decompress_seq_thread_multiprocessing.json", "w") as fp:
+    with open("results/python_decompress_seq_thread_multiprocessing.json", "w") as fp:
         json.dump(results, fp=fp)
 
     plot(title="Comparison of CPU bound tasks using Python 3.10",

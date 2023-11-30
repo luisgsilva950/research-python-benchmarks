@@ -71,7 +71,7 @@ print("Squared numbers:", squares)
 
 ### Results
 
-![Benchmark Image](figures/flat_lists.png)
+![Benchmark Image](figures/comparison_of_flat_lists_methods_using_python_3_10.png)
 
 
 # Logging DEBUG Alternatives
@@ -130,8 +130,8 @@ logger.debug("Using percent format: %s" % (text))
 ```
 
 ### Results
-![Benchmark Image](figures/logging_debug_alternatives_DEBUG.png)
-![Benchmark Image](figures/logging_debug_alternatives_INFO.png)
+![Benchmark Image](figures/comparison_of_logging_debug_alternatives_using_python_3_10_(log_level__debug).png)
+![Benchmark Image](figures/comparison_of_logging_debug_alternatives_using_python_3_10_(log_level__info).png)
 
 ## Usage
 
