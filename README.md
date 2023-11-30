@@ -22,7 +22,7 @@ perform under different workloads and input sizes. Also, it's important to prove
 ### Results
 
 [//]: # (![Benchmark Image]&#40;python_cpu_bound_tasks.png&#41;)
-![Benchmark Image](cpu_bound_tasks_small_quantity.png)
+![Benchmark Image](figures/cpu_bound_tasks_small_quantity.png)
 
 # Flat lists
 
@@ -71,7 +71,7 @@ print("Squared numbers:", squares)
 
 ### Results
 
-![Benchmark Image](flat_lists.png)
+![Benchmark Image](figures/flat_lists.png)
 
 
 # Logging DEBUG Alternatives
@@ -130,8 +130,8 @@ logger.debug("Using percent format: %s" % (text))
 ```
 
 ### Results
-![Benchmark Image](logging_debug_alternatives_DEBUG.png)
-![Benchmark Image](logging_debug_alternatives_INFO.png)
+![Benchmark Image](figures/logging_debug_alternatives_DEBUG.png)
+![Benchmark Image](figures/logging_debug_alternatives_INFO.png)
 
 ## Usage
 
