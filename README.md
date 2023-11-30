@@ -126,7 +126,7 @@ if logger.isEnabledFor(logging.DEBUG):
 String formatting with % is a classic approach that offers flexibility. This method involves using the `%` operator to format strings. How does this compare in terms of performance when the log level is disabled?
 
 ```python
-logger.debug("Using logging parameters checking log level: %s" % (text))
+logger.debug("Using percent format: %s" % (text))
 ```
 
 ### Results
