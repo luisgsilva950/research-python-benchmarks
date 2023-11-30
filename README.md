@@ -14,15 +14,15 @@ perform under different workloads and input sizes. Also, it's important to prove
 
 ## Examples
 1. **Sequential**: This approach represents the baseline performance of executing tasks sequentially.
-2. **Thread Pool (100 workers)**: This approach utilizes a thread pool with 100 workers to parallelize tasks.
-3. **Thread Pool (10 workers)**: This approach utilizes a thread pool with 10 workers to parallelize tasks.
+2. **Thread Pool (100 workers)**: This approach utilizes a thread pool with 100 workers to concurrent tasks.
+3. **Thread Pool (10 workers)**: This approach utilizes a thread pool with 10 workers to concurrent tasks.
 4. **Multiprocessing Pool**: This approach utilizes the `multiprocessing` module to distribute tasks among multiple
    processes.
 
 ### Results
 
-[//]: # (![Benchmark Image]&#40;python_cpu_bound_tasks.png&#41;)
-![Benchmark Image](figures/cpu_bound_tasks_small_quantity.png)
+![Benchmark Image](figures/comparison_of_cpu_bound_tasks_using_python_3_10_(alot_of_tasks).png)
+![Benchmark Image](figures/comparison_of_cpu_bound_tasks_using_python_3_10_(few_tasks).png)
 
 # Flat lists
 

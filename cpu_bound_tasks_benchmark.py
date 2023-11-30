@@ -20,7 +20,7 @@ def generate_x_gzipped_values(size: int):
     return values
 
 
-@timeit(executions=5)
+@timeit(executions=1)
 def get_sequential_time(values: List[bytes]):
     sequential_results = []
     for value in values:
@@ -28,7 +28,7 @@ def get_sequential_time(values: List[bytes]):
     return sequential_results
 
 
-@timeit(executions=5)
+@timeit(executions=1)
 def get_threadpool_100_workers_time(values: List[bytes]):
     executor = ThreadPoolExecutor(max_workers=100)
     futures = []
@@ -38,7 +38,7 @@ def get_threadpool_100_workers_time(values: List[bytes]):
     return futures
 
 
-@timeit(executions=5)
+@timeit(executions=1)
 def get_threadpool_10_workers_time(values: List[bytes]):
     executor = ThreadPoolExecutor(max_workers=10)
     futures = []
@@ -48,7 +48,7 @@ def get_threadpool_10_workers_time(values: List[bytes]):
     return futures
 
 
-@timeit(executions=5)
+@timeit(executions=1)
 def get_multiprocessing_pool_time(values: List[bytes]):
     with Pool(processes=4) as pool:
         return pool.map(gzip.decompress, values)
@@ -57,7 +57,7 @@ def get_multiprocessing_pool_time(values: List[bytes]):
 if __name__ == '__main__':
     xs = []
     seq_ys, threadpool_100_workers_ys, threadpool_10_workers_ys, multiprocessing_pool_ys = [], [], [], []
-    for x in range(1, 50000, 100):
+    for x in range(1, 2000, 50):
         xs.append(x)
         compressed_values = generate_x_gzipped_values(size=x)
         seq_ys.append(get_sequential_time(values=compressed_values))
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     with open("results/python_decompress_seq_thread_multiprocessing.json", "w") as fp:
         json.dump(results, fp=fp)
 
-    plot(title="Comparison of CPU bound tasks using Python 3.10",
+    plot(title="Comparison of CPU bound tasks using Python 3.10 (few tasks)",
          xs=('nº tasks', xs),
          values=[('sequential', seq_ys),
                  ('threadpool 100 workers', threadpool_100_workers_ys),
