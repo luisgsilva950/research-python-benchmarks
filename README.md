@@ -22,8 +22,8 @@ do not work well in Python because of GIL.
 
 ## Results
 
-![Benchmark Image](python_cpu_bound_tasks.png) <!-- Replace with the actual path to your benchmark image -->
-![Benchmark Image](cpu_bound_tasks_looking_deep_into_small_quantity.png) <!-- Replace with the actual path to your benchmark image -->
+![Benchmark Image](python_cpu_bound_tasks.png)
+![Benchmark Image](cpu_bound_tasks_small_quantity.png)
 
 # Flat lists
 
@@ -72,7 +72,50 @@ print("Squared numbers:", squares)
 
 ## Results
 
-![Benchmark Image](python_cpu_bound_tasks.png) <!-- Replace with the actual path to your benchmark image -->
+![Benchmark Image](python_cpu_bound_tasks.png)
+
+
+# Logging DEBUG Alternatives
+
+This README explores three different approaches for processing log messages in Python, aiming to understand their efficiency when the log level is disabled. The three methods compared are:
+
+1. **F-String**
+2. **String Format**
+3. **Logging Library Parameters**
+
+## Objective
+
+The main objective is to determine the most efficient approach for handling log messages when the log level is disabled. In situations where the log level is set to a higher threshold (e.g., INFO, WARNING, ERROR), unnecessary processing of log entries at a lower level (e.g., DEBUG) can be a performance overhead. By identifying the most efficient method, developers can make informed decisions to optimize their logging practices.
+
+## Comparison
+
+### 1. F-String
+
+Using f-strings for log messages provides a concise and readable syntax. However, the question arises: How does the processing of f-strings impact performance when the log level is disabled?
+
+```python
+logger.debug(f"Using f-string: {[2 * t[0] for t in text]}")
+```
+
+### 2. String Format
+
+String formatting is a classic approach that offers flexibility. This method involves using the `format` method to insert values into a string. How does this compare in terms of performance when the log level is disabled?
+
+```python
+logger.debug("Using string format: {}".format([2 * t[0] for t in text]))
+```
+
+### 3. Logging Library Parameters
+
+The logging library in Python provides a robust mechanism for handling log messages. By passing parameters to the logging functions, we can control when and how log messages are processed. How does this approach fare in terms of efficiency?
+
+```python
+logger.debug("Using logging parameters: %s", [2 * t[0] for t in text])
+```
+
+## Results
+![Benchmark Image](logging_debug_alternatives_DEBUG.png)
+![Benchmark Image](logging_debug_alternatives_INFO.png)
 
 ## Usage
 
