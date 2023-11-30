@@ -20,7 +20,7 @@ do not work well in Python because of GIL.
 4. **Multiprocessing Pool**: This approach utilizes the `multiprocessing` module to distribute tasks among multiple
    processes.
 
-## Results
+### Results
 
 ![Benchmark Image](python_cpu_bound_tasks.png)
 ![Benchmark Image](cpu_bound_tasks_small_quantity.png)
@@ -70,20 +70,18 @@ squares = [x**2 for x in numbers]
 print("Squared numbers:", squares)
 ```
 
-## Results
+### Results
 
 ![Benchmark Image](python_cpu_bound_tasks.png)
 
 
 # Logging DEBUG Alternatives
 
-This README explores three different approaches for processing log messages in Python, aiming to understand their efficiency when the log level is disabled. The three methods compared are:
+This test explores three different approaches for processing log messages in Python, aiming to understand their efficiency when the log level is disabled. The three methods compared are:
 
 1. **F-String**
 2. **String Format**
 3. **Logging Library Parameters**
-
-## Objective
 
 The main objective is to determine the most efficient approach for handling log messages when the log level is disabled. In situations where the log level is set to a higher threshold (e.g., INFO, WARNING, ERROR), unnecessary processing of log entries at a lower level (e.g., DEBUG) can be a performance overhead. By identifying the most efficient method, developers can make informed decisions to optimize their logging practices.
 
@@ -113,7 +111,7 @@ The logging library in Python provides a robust mechanism for handling log messa
 logger.debug("Using logging parameters: %s", [2 * t[0] for t in text])
 ```
 
-## Results
+### Results
 ![Benchmark Image](logging_debug_alternatives_DEBUG.png)
 ![Benchmark Image](logging_debug_alternatives_INFO.png)
 
@@ -132,4 +130,5 @@ logger.debug("Using logging parameters: %s", [2 * t[0] for t in text])
    python3 cpu_bound_tasks_benchmark.py
    python3 concat_lists_benchmark.py
    python3 dataclass_vs_namedtuple_benchmark.py
+   python3 logging_ways.py
    ```
