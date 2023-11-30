@@ -21,7 +21,7 @@ perform under different workloads and input sizes. Also, it's important to prove
 
 ### Results
 
-![Benchmark Image](python_cpu_bound_tasks.png)
+[//]: # (![Benchmark Image]&#40;python_cpu_bound_tasks.png&#41;)
 ![Benchmark Image](cpu_bound_tasks_small_quantity.png)
 
 # Flat lists
@@ -71,7 +71,7 @@ print("Squared numbers:", squares)
 
 ### Results
 
-![Benchmark Image](python_cpu_bound_tasks.png)
+![Benchmark Image](flat_lists.png)
 
 
 # Logging DEBUG Alternatives
@@ -81,6 +81,8 @@ This test explores three different approaches for processing log messages in Pyt
 1. **F-String**
 2. **String Format**
 3. **Logging Library Parameters**
+4. **Logging checking log level**
+5. **Logging formatting with %**
 
 The main objective is to determine the most efficient approach for handling log messages when the log level is disabled. In situations where the log level is set to a higher threshold (e.g., INFO, WARNING, ERROR), unnecessary processing of log entries at a lower level (e.g., DEBUG) can be a performance overhead. By identifying the most efficient method, developers can make informed decisions to optimize their logging practices.
 
@@ -91,7 +93,7 @@ The main objective is to determine the most efficient approach for handling log 
 Using f-strings for log messages provides a concise and readable syntax. However, the question arises: How does the processing of f-strings impact performance when the log level is disabled?
 
 ```python
-logger.debug(f"Using f-string: {[2 * t[0] for t in text]}")
+logger.debug(f"Using f-string: {text}")
 ```
 
 ### 2. String Format
@@ -99,7 +101,7 @@ logger.debug(f"Using f-string: {[2 * t[0] for t in text]}")
 String formatting is a classic approach that offers flexibility. This method involves using the `format` method to insert values into a string. How does this compare in terms of performance when the log level is disabled?
 
 ```python
-logger.debug("Using string format: {}".format([2 * t[0] for t in text]))
+logger.debug("Using string format: {}".format(text))
 ```
 
 ### 3. Logging Library Parameters
@@ -107,7 +109,24 @@ logger.debug("Using string format: {}".format([2 * t[0] for t in text]))
 The logging library in Python provides a robust mechanism for handling log messages. By passing parameters to the logging functions, we can control when and how log messages are processed. How does this approach fare in terms of efficiency?
 
 ```python
-logger.debug("Using logging parameters: %s", [2 * t[0] for t in text])
+logger.debug("Using logging parameters: %s", text)
+```
+
+### 4. Logging checking log level
+
+The logging library in Python provides a robust mechanism for handling log messages. We are able to check if the log level is enabled, so we can process the input just inside this condition. How does this approach fare in terms of efficiency?
+
+```python
+if logger.isEnabledFor(logging.DEBUG):
+    logger.debug("Using logging parameters checking log level: %s", text)
+```
+
+### 5. Logging formatting with %
+
+String formatting with % is a classic approach that offers flexibility. This method involves using the `%` operator to format strings. How does this compare in terms of performance when the log level is disabled?
+
+```python
+logger.debug("Using logging parameters checking log level: %s" % (text))
 ```
 
 ### Results

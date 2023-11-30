@@ -42,7 +42,7 @@ def concat_using_list_compression(values: List[List[Any]]):
 if __name__ == '__main__':
     xs = []
     sum_ys, plus_operator_ys, extend_ys, compression_ys = [], [], [], []
-    for x in range(1, 5000, 200):
+    for x in range(1, 2000, 200):
         xs.append(x)
         compressed_values = generate_list_of_x_lists(size=x)
         sum_ys.append(concat_using_sum_time(values=compressed_values))

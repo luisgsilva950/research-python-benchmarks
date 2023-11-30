@@ -21,7 +21,7 @@ def log_with_string_format(text: List[str]):
 
 @timeit(executions=10)
 def log_using_percent_format(text: List[str]):
-    logger.debug("Using logging parameters checking log level: %s" % (text))
+    logger.debug("Using percent format: %s" % (text))
 
 
 @timeit(executions=10)
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     with open("python_logging_ways.json", "w") as fp:
         json.dump(results, fp=fp)
 
-    plot(title="Comparison of logging debug alternatives using Python 3.10 (LOG LEVEL: INFO)",
+    plot(title="Comparison of logging debug alternatives using Python 3.10 (LOG LEVEL: DEBUG)",
          xs=('nº of texts', xs),
          values=[('f string', f_string_ys),
                  ('string format', string_format_ys),
