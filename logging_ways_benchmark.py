@@ -2,7 +2,7 @@ import json
 import logging
 from typing import List
 
-from utils import timeit, plot
+from utils import timeit, plot, moving_average
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ def log_checking_log_level(text: List[str]):
 if __name__ == "__main__":
     xs = []
     f_string_ys, string_format_ys, logging_params_ys, log_checking_log_level_ys, log_using_percent_ys = [], [], [], [], []
-    for size in range(1, 20000, 100):
+    for size in range(1, 20000, 200):
         xs.append(size)
         texts = ["Hello, world!" for _ in range(size)]
         f_string_ys.append(log_with_f_string(texts))
@@ -64,8 +64,8 @@ if __name__ == "__main__":
 
     plot(title="Comparison of logging debug alternatives using Python 3.10 (LOG LEVEL: INFO)",
          xs=('nº of texts', xs),
-         values=[('f string', f_string_ys),
-                 ('string format', string_format_ys),
-                 ('logging params', logging_params_ys),
-                 ('logging checking log level', log_checking_log_level_ys),
-                 ('logging using % format', log_using_percent_ys)])
+         values=[('f string', moving_average(f_string_ys)),
+                 ('string format', moving_average(string_format_ys)),
+                 ('logging params', moving_average(logging_params_ys)),
+                 ('logging checking log level', moving_average(log_checking_log_level_ys)),
+                 ('logging using % format', moving_average(log_using_percent_ys))])

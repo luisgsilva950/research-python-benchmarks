@@ -133,6 +133,50 @@ logger.debug("Using percent format: %s" % (text))
 ![Benchmark Image](figures/comparison_of_logging_debug_alternatives_using_python_3_10_(log_level__debug).png)
 ![Benchmark Image](figures/comparison_of_logging_debug_alternatives_using_python_3_10_(log_level__info).png)
 
+# Summing Methods for Custom Objects
+## Motivation
+It explores different methods for summing attributes of custom objects in Python, focusing on the summation of the x attribute of objects of the `MyObject` class. By comparing methods like using a for loop, map, list comprehensions, and functools.reduce, developers can choose the most suitable approach based on their specific use cases, optimizing code and improving program performance.
+
+## Examples
+
+### 1. Using a for-loop
+
+The for loop is a traditional method for summing attributes of objects. In this implementation, a for loop iterates over the objects, accumulating the sum.
+
+```python
+total = 0
+for obj in objects:
+    total += obj.x
+```
+
+### 2. Using map
+
+The map function provides a concise way to apply a function to each element in an iterable. This example uses map to extract the x attribute from each object and then calculates the sum.
+
+```python
+total = sum(map(lambda obj: obj.x, objects))
+```
+
+### 3. Using List Comprehension
+
+List comprehensions offer a concise and readable syntax for creating lists. This example utilizes list comprehension to sum the x attribute of objects efficiently.
+
+```python
+total = sum(obj.x for obj in objects)
+```
+
+### 4. Using functools reduce
+
+The functools.reduce function cumulatively applies a function to the items of an iterable. In this case, it's used to sum the x attribute of the objects.
+
+```python
+import functools
+total = functools.reduce(lambda acc, obj: acc + obj.x, objects, 0)
+```
+
+### Results
+![Benchmark Image](figures/comparison_of_summing_methods_using_python_3_10.png)
+
 ## Usage
 
 1. Ensure you have **Python 3.10** installed. You can download it from
@@ -148,5 +192,6 @@ logger.debug("Using percent format: %s" % (text))
    python3 cpu_bound_tasks_benchmark.py
    python3 concat_lists_benchmark.py
    python3 dataclass_vs_namedtuple_benchmark.py
-   python3 logging_ways.py
+   python3 logging_ways_benchmark.py
+   python3 summing_list_benchmark.py
    ```

@@ -41,3 +41,11 @@ def plot(title: str, xs: Tuple[str, List[int]], values: List[Tuple[str, List[int
                 facecolor='auto', edgecolor='auto', backend=None)
 
     plt.show()
+
+
+def moving_average(data: List[int], window_size: int = 13):
+    pad_size = (window_size - 1) // 2
+    import numpy as np
+    padded_data = np.pad(data, (pad_size, pad_size), mode='edge')
+    smoothed_data = np.convolve(padded_data, np.ones(window_size) / window_size, mode='valid')
+    return list(smoothed_data)
