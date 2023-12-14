@@ -27,7 +27,7 @@ perform under different workloads and input sizes. Also, it's important to prove
 # Flat lists
 
 ## Motivation
-This repository provides different methods for working with lists in Python, aiming to help developers understand and compare various approaches to handle list operations efficiently. By exploring different techniques like using the `sum` function, `extend` method, `+` operator, and list comprehensions, developers can optimize their code based on specific use cases and improve the performance of their programs.
+It explores different techniques like using the `sum` function, `extend` method, `+` operator, and list comprehensions for flat lists, e.g. transform `[[1, 2, 3], [4, 5, 6, 7]]` in `[1, 2, 3, 4, 5, 6, 7]`.
 
 ## Examples
 
@@ -64,9 +64,8 @@ print("Concatenated list:", result)
 List comprehensions provide a concise way to create lists. They are efficient and readable, allowing developers to create new lists by applying an expression to each item in an existing iterable (e.g., list, tuple, range) and optionally applying a filter condition.
 
 ```python
-numbers = [1, 2, 3, 4, 5]
-squares = [x**2 for x in numbers]
-print("Squared numbers:", squares)
+nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flat_list = [element for sublist in nested_list for element in sublist]
 ```
 
 ### Results
